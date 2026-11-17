@@ -1,6 +1,7 @@
 // Disable command line from opening on release mode
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
+mod daily_puzzle;
 mod reliability;
 mod watcher_debug;
 mod zed;
@@ -1559,7 +1560,8 @@ pub(crate) async fn restore_or_create_workspace(
             })
             .await?;
         }
-    } else if matches!(kvp.read_kvp(FIRST_OPEN), Ok(None)) {
+    } else if matches!(kvp.read_kvp(FIRST_OPEN), Ok(None)) && std::env::var_os("GDP_ROOT").is_none()
+    {
         cx.update(|cx| show_onboarding_view(app_state, cx)).await?;
     } else {
         cx.update(|cx| {
@@ -1571,6 +1573,7 @@ pub(crate) async fn restore_or_create_workspace(
                     let restore_on_startup = WorkspaceSettings::get_global(cx).restore_on_startup;
                     match restore_on_startup {
                         workspace::RestoreOnStartupBehavior::Launchpad => {}
+                        _ if std::env::var_os("GDP_ROOT").is_some() => {}
                         _ => {
                             Editor::new_file(workspace, &Default::default(), window, cx);
                         }

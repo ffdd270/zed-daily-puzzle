@@ -1722,4 +1722,17 @@
       "right": ["tabular_data::MoveFocusedCell", { "direction": "right" }],
     },
   },
+  {
+    "context": "DailyPuzzleAnswer > Editor",
+    "bindings": {
+      "ctrl-enter": "daily_puzzle::Submit",
+      "f5": "daily_puzzle::RunExample",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-alt-n": "daily_puzzle::Next",
+    },
+  },
 ]

@@ -22,6 +22,7 @@ tree-sitter = { workspace = true, optional = true }
 tree-sitter-bash = { workspace = true, optional = true }
 tree-sitter-c = { workspace = true, optional = true }
 tree-sitter-cpp = { workspace = true, optional = true }
+tree-sitter-gdscript = { workspace = true, optional = true }
 tree-sitter-css = { workspace = true, optional = true }
 tree-sitter-diff = { workspace = true, optional = true }
 tree-sitter-gitcommit = { workspace = true, optional = true }
@@ -43,6 +44,7 @@ load-grammars = [
     "tree-sitter-bash",
     "tree-sitter-c",
     "tree-sitter-cpp",
+    "tree-sitter-gdscript",
     "tree-sitter-css",
     "tree-sitter-diff",
     "tree-sitter-gitcommit",

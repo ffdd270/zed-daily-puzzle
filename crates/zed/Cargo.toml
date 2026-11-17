@@ -191,6 +191,7 @@ sandbox.workspace = true
 search.workspace = true
 serde.workspace = true
 serde_json.workspace = true
+sha2.workspace = true
 session.workspace = true
 settings.workspace = true
 settings_profile_selector.workspace = true
@@ -241,7 +242,7 @@ nix = { workspace = true, features = ["user"] }
 
 [target.'cfg(target_os = "windows")'.dependencies]
 etw_tracing.workspace = true
-windows = { workspace = true, features = ["Win32_System_Console", "Win32_System_Pipes"] }
+windows = { workspace = true, features = ["Win32_System_Console", "Win32_System_Pipes", "Win32_System_JobObjects", "Win32_Security", "Win32_System_Threading"] }
 gpui = { workspace = true, features = ["profiler", "windows-manifest"] }
 
 [target.'cfg(target_os = "windows")'.build-dependencies]

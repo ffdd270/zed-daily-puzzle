@@ -1,4 +1,5 @@
 mod app_menus;
+use crate::daily_puzzle;
 pub mod edit_prediction_registry;
 #[cfg(target_os = "macos")]
 pub(crate) mod mac_only_instance;
@@ -191,6 +192,7 @@ actions!(
 );
 
 pub fn init(cx: &mut App) {
+    daily_puzzle::init(cx);
     #[cfg(target_os = "macos")]
     cx.on_action(|_: &Hide, cx| cx.hide());
     #[cfg(target_os = "macos")]
@@ -810,8 +812,9 @@ fn initialize_panels(window: &mut Window, cx: &mut Context<Workspace>) -> Task<a
             initialize_agent_panel(workspace_handle.clone(), cx.clone()).map(|r| r.log_err()),
         );
 
-        workspace_handle.update(cx, |workspace, cx| {
+        workspace_handle.update_in(cx, |workspace, window, cx| {
             workspace.finish_dock_restoration(cx);
+            daily_puzzle::install(workspace, window, cx);
         })?;
 
         anyhow::Ok(())

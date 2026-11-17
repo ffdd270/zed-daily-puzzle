@@ -122,6 +122,10 @@ pub fn init(languages: Arc<LanguageRegistry>, fs: Arc<dyn Fs>, node: NodeRuntime
             ..Default::default()
         },
         LanguageInfo {
+            name: "gdscript",
+            ..Default::default()
+        },
+        LanguageInfo {
             name: "go",
             adapters: vec![go_lsp_adapter.clone()],
             context: Some(go_context_provider.clone()),
